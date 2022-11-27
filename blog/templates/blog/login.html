@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Login</title>
+  </head>
+  <body>
+
+
+    {% if Alert %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Alert: </strong> {{Alert}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% else %}
+        <div class="text-center mt-2.5">
+            <h1>Welcome Back</h1>
+        </div>
+        <hr size="5" width="70%" color="black"> 
+    {% endif %}
+
+    {% if sucess %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>sucess: </strong> {{sucess}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+
+    <div class="text-center mt-3">
+        <h4>Login Here</h4>
+        <hr size="3" width="90%">
+    </div>
+
+
+    <form class="w-75 p-3 mx-auto" action="/" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputusername">User Name</label>
+          <input class="form-control" name="username" id="exampleInputusername"  placeholder="Enter UserName">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <button type="submit"  class="btn btn-primary">Submit</button>
+    </form>
+
+    <div class="d-flex flex-row bd-highlight w-75 p-3 mx-auto">
+        <div class="p-2 bd-highlight"><a href="{% url 'signup' %}">register user</a></div>
+        <div class="p-2 bd-highlight"><a href="{% url 'forgot' %}">forgot password</a></div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
