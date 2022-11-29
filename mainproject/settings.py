@@ -33,6 +33,10 @@ ALLOWED_HOSTS = ["bigblogs.herokuapp.com", "localhost", "*"]
 
 # Application definition
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://bigblogs.herokuapp.com'
+]
+
 INSTALLED_APPS = [
     'blog',
     'django.contrib.admin',
