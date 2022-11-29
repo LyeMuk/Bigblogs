@@ -214,6 +214,10 @@ def dashboard(request):
     contex['userblog']=userblog
     return render(request, 'blog/dashboard.html', contex)
 
+def logout(request):
+    request.session.clear()
+    return redirect(loggin)
+
 @api_view(['GET'])
 def ApiOverview(request):
     api_urls = {
@@ -224,7 +228,6 @@ def ApiOverview(request):
     }
   
     return Response(api_urls)
-
 
 
 @api_view(['POST'])

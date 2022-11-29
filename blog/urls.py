@@ -15,6 +15,7 @@ urlpatterns = [
     path('prior', views.prior, name="prior"),
     path('dashboard', views.dashboard, name="dashboard"),
     path('delit/<int:num>', views.delit, name="delit"),
+    path('logout', views.logout , name='logout'),
 
     path('api', views.ApiOverview, name='homme'),
     path('api/create/', views.add_items, name='add-items'),
