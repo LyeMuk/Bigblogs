@@ -8,6 +8,13 @@ from datetime import datetime, date,  timedelta
 
 # API_KEY = 462c26db18924aa4af4acffa50de5a05
 
+
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .models import blogg,  ItemSerializer
+from rest_framework import status
+
 # Global Variables
 all_articles=None
 st = 0
@@ -190,7 +197,6 @@ def delit(request, num):
     instance.delete()
     return redirect(dashboard)
 
-
 def dashboard(request):
     contex={}
     if request.method=='POST':
@@ -207,3 +213,67 @@ def dashboard(request):
     userblog=blogg.objects.filter(authorname=request.user.username).values()
     contex['userblog']=userblog
     return render(request, 'blog/dashboard.html', contex)
+
+@api_view(['GET'])
+def ApiOverview(request):
+    api_urls = {
+        'all_items': '/api/all',
+        'Add': '/api/create/',
+        'Update': '/api/update/<int:pk>/',
+        'Delete': '/api/blog/<int:pk>/delete/'
+    }
+  
+    return Response(api_urls)
+
+
+
+@api_view(['POST'])
+def add_items(request):
+    item = ItemSerializer(data=request.data)
+  
+    # validating for already existing data
+    if blogg.objects.filter(**request.data).exists():
+        raise serializers.ValidationError('This data already exists')
+  
+    if item.is_valid():
+        item.save()
+        return Response(item.data)
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET'])
+def view_items(request):
+    # checking for the parameters from the URL
+    items = blogg.objects.all()
+    serializer = ItemSerializer(items, many=True)
+
+    # if there is something in items else raise error
+    if items:
+        return Response(serializer.data)
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['POST'])
+def update_items(request, pk):
+    item = blogg.objects.get(pk=pk)
+    data = ItemSerializer(instance=item, data=request.data)
+  
+    if data.is_valid():
+        data.save()
+        return Response(data.data)
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['DELETE'])
+def delete_items(request, pk):
+    try:
+        item = blogg.objects.get(bid=pk)
+        res = item
+        item.delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    
