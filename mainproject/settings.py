@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-raz97s3%3t40&7^z+3&d301!kot8w=eeotlb*fq0dojb^@%@@)'
-# SECRET_KEY = '6+7z!o=e5=@j1d6p1n2z(kt#oz=&m%wxv493b@9eqb!)+(&a%c'
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = '6+7z!o=e5=@j1d6p1n2z(kt#oz=&m%wxv493b@9eqb!)+(&a%c'
+# SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -126,8 +126,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR/'static'
+STATIC_URL = 'static/'
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+# STATIC_ROOT = BASE_DIR/'static'
 
 
 # Default primary key field type
