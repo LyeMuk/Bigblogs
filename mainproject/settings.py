@@ -28,14 +28,14 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["bigblogs.herokuapp.com", "localhost", "*"]
+ALLOWED_HOSTS = [ "localhost", "*", ".vercel.app", ".now.sh"]
 
 
 # Application definition
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://bigblogs.herokuapp.com'
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://bigblogs.herokuapp.com'
+# ]
 
 INSTALLED_APPS = [
     'blog',
@@ -124,6 +124,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR/'static'
