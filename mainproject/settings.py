@@ -22,13 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-raz97s3%3t40&7^z+3&d301!kot8w=eeotlb*fq0dojb^@%@@)'
-# SECRET_KEY = '6+7z!o=e5=@j1d6p1n2z(kt#oz=&m%wxv493b@9eqb!)+(&a%c'
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = '6+7z!o=e5=@j1d6p1n2z(kt#oz=&m%wxv493b@9eqb!)+(&a%c'
+# SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ "localhost", "*", ".vercel.app", ".now.sh"]
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '*']
 
 
 # Application definition
@@ -83,12 +83,12 @@ WSGI_APPLICATION = 'mainproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+}
 
 
 # Password validation
